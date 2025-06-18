@@ -1,8 +1,8 @@
 import json
 import torch
 
-from ..utils.GPTWrapper import GPTAPIWrapper
-from ..utils.GeminiWrapper import GeminiAPIWrapper
+#from ..utils.GPTWrapper import GPTAPIWrapper
+#from ..utils.GeminiWrapper import GeminiAPIWrapper
 from ..ga.ga_attack import DrAttack_random_search
 
 class PromptAttack(object):

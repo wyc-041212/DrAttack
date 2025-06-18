@@ -7,12 +7,13 @@ class LocalHFWrapper:
         self.model = model
         self.tokenizer = tokenizer
         self.conv_template = conv_template  # optional
-        if model_path:
-            name = Path(model_path).name.lower()
-            if "qwen" in name:
-                self.model_name = "qwen"
-            elif "deepseek" in name:
-                self.model_name = "deepseek"
+        self.model_name = "qwen"
+        # if model_path:
+        #     name = Path(model_path).name.lower()
+        #     if "qwen" in name:
+        #         self.model_name = "qwen"
+        #     elif "deepseek" in name:
+        #         self.model_name = "deepseek"
 
     def __call__(self, prompts):
         results = []

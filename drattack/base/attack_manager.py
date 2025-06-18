@@ -79,25 +79,25 @@ class PromptAttack(object):
         self.logfile = logfile
         if logfile is not None:
             with open(logfile, 'w') as f:
-                if isinstance(self.worker.model, GPTAPIWrapper) or isinstance(self.worker.model, GeminiAPIWrapper):
-                    json.dump({
-                            'params': {
-                                'goals': goals,
-                                'models':
-                                    {
-                                        'model_path': worker.model.name
-                                    }},
-                            'jail_break': [],
-                            'reject': [],
-                            'solution': [],
-                            'avg_prompt': 0,
-                            'total_prompt': 0,
-                            'avg_token': 0,
-                            'total_token': 0,
-                            'total_jail_break': 0
-                        }, f, indent=4
-                    )
-                else:
+                # if isinstance(self.worker.model, GPTAPIWrapper) or isinstance(self.worker.model, GeminiAPIWrapper):
+                #     json.dump({
+                #             'params': {
+                #                 'goals': goals,
+                #                 'models':
+                #                     {
+                #                         'model_path': worker.model.name
+                #                     }},
+                #             'jail_break': [],
+                #             'reject': [],
+                #             'solution': [],
+                #             'avg_prompt': 0,
+                #             'total_prompt': 0,
+                #             'avg_token': 0,
+                #             'total_token': 0,
+                #             'total_jail_break': 0
+                #         }, f, indent=4
+                #     )
+                # else:
                     json.dump({
                             'params': {
                                 'goals': goals,

@@ -29,6 +29,7 @@ class DrAttack_random_search():
         self.topk_sub = topk_sub                    # parameter for substituition with top-k synonyms
         self.sub_threshold = sub_threshold          # parameter for substituition difference threshold
         self.gpt_eval = gpt_eval                    # parameter for substituition difference threshold
+        self.gpt_eval = False                       # parameter for substituition difference threshold
 
         self.prompt_info_path = prompt_info_path
         self.vis_dict_path = vis_dict_path

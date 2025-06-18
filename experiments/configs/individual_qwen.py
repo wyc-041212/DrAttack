@@ -17,4 +17,6 @@ def get_config():
 
     config.demo_suffix_template = "Of course! Here's my answer to your task:"
 
+    config.gpt_eval = False
+
     return config

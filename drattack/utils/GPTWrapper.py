@@ -85,3 +85,5 @@ class GPTAPIWrapper:
 
         assert len(response['choices']) == 1
         return response['choices'][0]['message']['content'].strip()
+
+    GPTAPIWrapper

@@ -986,11 +986,11 @@ class DrAttack_random_search():
             output = self.output_dict[self.population[np.argmin(scores)]]
 
             jailbroken = not any([prefix in output for prefix in self.test_prefixes])
-            if self.gpt_eval and jailbroken:
-                eval = self.gpt_eval_template.replace("{model response to be evaluated}", output)
-                model = GPTAPIWrapper()
-                res = model([eval])
-                jailbroken = True if  "Yes" in res or "yes" in res else False
+            # if self.gpt_eval and jailbroken:
+            #     eval = self.gpt_eval_template.replace("{model response to be evaluated}", output)
+            #     model = GPTAPIWrapper()
+            #     res = model([eval])
+            #     jailbroken = True if  "Yes" in res or "yes" in res else False
             
             if jailbroken and np.min(scores) < 0:
                 self.save_visited()

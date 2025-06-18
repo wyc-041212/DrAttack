@@ -98,25 +98,33 @@ class PromptAttack(object):
                 #         }, f, indent=4
                 #     )
                 # else:
-                    json.dump({
-                            'params': {
-                                'goals': goals,
-                                'models':
-                                    {
-                                        'model_path': worker.model.name_or_path,
-                                        'tokenizer_path': worker.tokenizer.name_or_path,
-                                        'conv_template': worker.conv_template.name
-                                    }},
-                            'jail_break': [],
-                            'reject': [],
-                            'solution': [],
-                            'avg_prompt': 0,
-                            'total_prompt': 0,
-                            'avg_token': 0,
-                            'total_token': 0,
-                            'total_jail_break': 0
-                        }, f, indent=4
-                    )
+
+                model_path = getattr(worker.model, "name_or_path", "N/A")
+                tokenizer_path = getattr(worker.tokenizer, "name_or_path", "N/A")
+                conv_template_name = getattr(getattr(worker, "conv_template", None), "name", "N/A")
+
+                json.dump({
+                        'params': {
+                            'goals': goals,
+                            'models':
+                                {
+                                    # 'model_path': worker.model.name_or_path,
+                                    'model_path': model_path,
+                                    # 'tokenizer_path': worker.tokenizer.name_or_path,
+                                    'tokenizer_path': tokenizer_path,
+                                    # 'conv_template': worker.conv_template.name
+                                    'conv_template': conv_template_name
+                                }},
+                        'jail_break': [],
+                        'reject': [],
+                        'solution': [],
+                        'avg_prompt': 0,
+                        'total_prompt': 0,
+                        'avg_token': 0,
+                        'total_token': 0,
+                        'total_jail_break': 0
+                    }, f, indent=4
+                )
 
     @staticmethod
     def filter_mpa_kwargs(**kwargs):

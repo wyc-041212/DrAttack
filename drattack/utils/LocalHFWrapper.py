@@ -3,7 +3,7 @@ import torch
 from pathlib import Path
 
 class LocalHFWrapper:
-    def __init__(self, model, tokenizer, conv_template=None,model_path=None):
+    def __init__(self, model, tokenizer, conv_template=None, model_path=None):
         self.model = model
         self.tokenizer = tokenizer
         self.conv_template = conv_template  # optional

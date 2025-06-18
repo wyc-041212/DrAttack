@@ -144,7 +144,8 @@ def get_worker(params, eval=False):
                 **params.model_kwarg
             )
             print(f"[LocalHFWrapper] Loaded model from {params.model_path}")
-            return LocalHFWrapper(model, tokenizer)
+            raw_conv_template = get_conversation_template(params.conversation_template)
+            return LocalHFWrapper(model, tokenizer, raw_conv_template)
 
         tokenizer = AutoTokenizer.from_pretrained(
             params.tokenizer_path,

@@ -62,14 +62,15 @@ class GPTAPIWrapper:
             print(f'Calling ChatGPT. Input length: {len(post[-1]["content"])}')
         while True:
             try:
-                ret = openai.ChatCompletion.create(
-                    model=self.model,
-                    messages=post,
-                    presence_penalty=presence_penalty,
-                    frequency_penalty=frequency_penalty,
-                    request_timeout=time_out,
-                )
-                break
+                # ret = openai.ChatCompletion.create(
+                #     model=self.model,
+                #     messages=post,
+                #     presence_penalty=presence_penalty,
+                #     frequency_penalty=frequency_penalty,
+                #     request_timeout=time_out,
+                # )
+                # break
+                raise RuntimeError("You should not be using GPTWrapper in local model mode.")
             except Exception as e:
                 if num_retries == 0:
                     raise RuntimeError

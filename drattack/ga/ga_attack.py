@@ -911,11 +911,11 @@ class DrAttack_random_search():
 
             jailbroken = False
 
-            if self.gpt_eval and jailbroken_str:
-                eval = self.gpt_eval_template.replace("{model response to be evaluated}", output)
-                model = GPTAPIWrapper()
-                res = model([eval])
-                jailbroken = True if  "Yes" in res or "yes" in res else False
+            # if self.gpt_eval and jailbroken_str:
+            #     eval = self.gpt_eval_template.replace("{model response to be evaluated}", output)
+            #     model = GPTAPIWrapper()
+            #     res = model([eval])
+            #     jailbroken = True if  "Yes" in res or "yes" in res else False
 
             output_embed = self.text_embedding_ada.get_embedding(output)[0][0].float()
             

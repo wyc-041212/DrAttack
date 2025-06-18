@@ -51,7 +51,7 @@ def main():
     # Load the JSON data into a Python variable
         generate_data = json.load(file)
 
-    file_name = '/data/advbench/harmful_behaviors.csv'
+    file_name = '/data/advbench/harmful_behaviors_original.csv'
     keyword = "ASSISTANT:"
 
     with open(file_name, newline='') as csvfile:

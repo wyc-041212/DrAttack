@@ -38,6 +38,32 @@ class ModelWorker(object):
             self.tasks = mp.JoinableQueue()
             self.results = mp.JoinableQueue()
             self.process = None
+        elif "qwen" in model_path:
+            self.model_name = "qwen"
+            self.model = AutoModelForCausalLM.from_pretrained(
+                model_path,
+                torch_dtype=torch.float16,
+                trust_remote_code=True,
+                **model_kwargs
+            ).to(device).eval()
+            self.tokenizer = tokenizer
+            self.conv_template = conv_template
+            self.tasks = mp.JoinableQueue()
+            self.results = mp.JoinableQueue()
+            self.process = None
+        elif "deepseek" in model_path:
+            self.model_name = "deepseek"
+            self.model = AutoModelForCausalLM.from_pretrained(
+                model_path,
+                torch_dtype=torch.float16,
+                trust_remote_code=True,
+                **model_kwargs
+            ).to(device).eval()
+            self.tokenizer = tokenizer
+            self.conv_template = conv_template
+            self.tasks = mp.JoinableQueue()
+            self.results = mp.JoinableQueue()
+            self.process = None
         elif "gpt" in model_path:
             self.model_name = "gpt"
             self.model = GPTAPIWrapper(model = model_path) # gpt-3.5-turbo
@@ -117,6 +143,10 @@ def get_worker(params, eval=False):
             tokenizer.pad_token = tokenizer.unk_token
             tokenizer.padding_side = 'left'
         if 'falcon' in params.tokenizer_path:
+            tokenizer.padding_side = 'left'
+        if 'qwen' in params.tokenizer_path.lower():
+            tokenizer.padding_side = 'left'
+        if 'deepseek' in params.tokenizer_path.lower():
             tokenizer.padding_side = 'left'
         if not tokenizer.pad_token:
             tokenizer.pad_token = tokenizer.eos_token

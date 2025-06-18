@@ -7,9 +7,9 @@ import time
 import pandas as pd
 from templates import templates
 
-with open('../api_keys/openai_key.txt') as file:
-    openai_key = file.read()
-openai.api_key = openai_key
+# with open('../api_keys/openai_key.txt') as file:
+#     openai_key = file.read()
+# openai.api_key = openai_key
 
 def prompts_csv_to_list(path):
 

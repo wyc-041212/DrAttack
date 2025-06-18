@@ -8,8 +8,8 @@ import torch.nn.functional as F
 from transformers import GPT2Tokenizer, set_seed
 
 from ..utils.sentence_tokenizer import Text_Embedding_Ada
-from ..utils.GPTWrapper import GPTAPIWrapper
-from ..utils.GeminiWrapper import GeminiAPIWrapper
+#from ..utils.GPTWrapper import GPTAPIWrapper
+#from ..utils.GeminiWrapper import GeminiAPIWrapper
 
 
 # Following is level-wise DrAttack random search

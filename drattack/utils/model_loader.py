@@ -7,6 +7,7 @@ from transformers import (AutoModelForCausalLM, AutoTokenizer)
 
 #from .GPTWrapper import GPTAPIWrapper
 #from .GeminiWrapper import GeminiAPIWrapper
+from .LocalHFWrapper import LocalHFWrapper
 
 class ModelWorker(object):
 
@@ -128,6 +129,23 @@ class ModelWorker(object):
 def get_worker(params, eval=False):
 
     if ('gpt' not in params.model_path) and ('gemini' not in params.model_path):
+        if any(x in params.model_path.lower() for x in ['qwen', 'deepseek']):
+            # 直接走 LocalHFWrapper 分支，不再走多进程 worker
+            tokenizer = AutoTokenizer.from_pretrained(
+                params.tokenizer_path,
+                trust_remote_code=True,
+                **params.tokenizer_kwarg
+            )
+            model = AutoModelForCausalLM.from_pretrained(
+                params.model_path,
+                trust_remote_code=True,
+                torch_dtype=torch.float16,
+                device_map="auto",  # auto 自动分配显存
+                **params.model_kwarg
+            )
+            print(f"[LocalHFWrapper] Loaded model from {params.model_path}")
+            return LocalHFWrapper(model, tokenizer)
+
         tokenizer = AutoTokenizer.from_pretrained(
             params.tokenizer_path,
             trust_remote_code=True,

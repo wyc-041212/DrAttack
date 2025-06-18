@@ -5,8 +5,8 @@ import torch.multiprocessing as mp
 from fastchat.model import get_conversation_template
 from transformers import (AutoModelForCausalLM, AutoTokenizer)
 
-from .GPTWrapper import GPTAPIWrapper
-from .GeminiWrapper import GeminiAPIWrapper
+#from .GPTWrapper import GPTAPIWrapper
+#from .GeminiWrapper import GeminiAPIWrapper
 
 class ModelWorker(object):
 

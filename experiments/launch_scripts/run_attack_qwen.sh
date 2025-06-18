@@ -29,7 +29,7 @@ do
         --config="../configs/individual_${model}.py" \
         --config.train_data="../../data/advbench/harmful_behaviors.csv" \
         --config.result_prefix="../results/attack_on_${model}" \
-        --config.n_train_data=520 \
+        --config.n_train_data=850 \
         --config.data_offset=$data_offset \
         --config.noun_sub=True \
         --config.verb_sub=True \

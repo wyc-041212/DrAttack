@@ -1,12 +1,18 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
+from pathlib import Path
 
 class LocalHFWrapper:
-    def __init__(self, model, tokenizer, conv_template=None):
+    def __init__(self, model, tokenizer, conv_template=None,model_path=None):
         self.model = model
         self.tokenizer = tokenizer
         self.conv_template = conv_template  # optional
-        self.model_name = "huggingface"
+        if model_path:
+            name = Path(model_path).name.lower()
+            if "qwen" in name:
+                self.model_name = "qwen"
+            elif "deepseek" in name:
+                self.model_name = "deepseek"
 
     def __call__(self, prompts):
         results = []

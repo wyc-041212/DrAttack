@@ -499,19 +499,22 @@ class DrAttack_random_search():
             model, tokenizer = self.worker.model, self.worker.tokenizer
             tokenizer.padding_side = 'left'
 
-            system_prompt = self.worker.conv_template.system
-            user_str = self.worker.conv_template.roles[0]
-            assitant_str = self.worker.conv_template.roles[1]
+            # system_prompt = self.worker.conv_template.system
+            # user_str = self.worker.conv_template.roles[0]
+            # assitant_str = self.worker.conv_template.roles[1]
 
-            input_harmless_sentence = system_prompt + user_str + ": " + harmless_prompt + " " + assitant_str + ": "
+            # input_harmless_sentence = system_prompt + user_str + ": " + harmless_prompt + " " + assitant_str + ": "
+            input_harmless_sentence = harmless_prompt
             input_harmless_sentence_enc = tokenizer(input_harmless_sentence, padding=True, truncation=False, return_tensors='pt')
 
             print("Calling qwen ...")
             ouput_harmless_sentence_enc = self.generate_output(input_harmless_sentence_enc, model, 1000)
-            ouput_harmless_sentence = tokenizer.batch_decode(ouput_harmless_sentence_enc, skip_special_tokens=True)
+            # ouput_harmless_sentence = tokenizer.batch_decode(ouput_harmless_sentence_enc, skip_special_tokens=True)
+            ouput_harmless_sentence = tokenizer.batch_decode(ouput_harmless_sentence_enc[0], skip_special_tokens=True)
 
-            start_index = ouput_harmless_sentence[0].find(assitant_str) + len(assitant_str)
-            harmless_response = ouput_harmless_sentence[0][(start_index + 1):]
+            # start_index = ouput_harmless_sentence[0].find(assitant_str) + len(assitant_str)
+            # harmless_response = ouput_harmless_sentence[0][(start_index + 1):]
+            harmless_response = ouput_harmless_sentence
 
         elif self.worker.model_name == "deepseek":
 
